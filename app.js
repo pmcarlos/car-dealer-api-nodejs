@@ -1,5 +1,11 @@
 const express = require('express');
 const logger = require('morgan');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/apiCars', {
+	useMongoClient: true
+});
+
 
 const app = express();
 
