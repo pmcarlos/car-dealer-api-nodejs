@@ -1,5 +1,6 @@
-var User = require('../models/user');
-var Car = require('../models/car');
+const User = require('../models/user');
+const Car = require('../models/car');
+const Joi = require('joi');
 
 module.exports = {
 	// index: (req, res, next) => {
@@ -35,7 +36,7 @@ module.exports = {
 	},
 
 	getUser: async(req, res, next) => {
-		const {userId} = req.params;
+		const {userId} = req.value.params;
 		const user = await User.findById(userId);
 		res.status(200).json(user);
 
