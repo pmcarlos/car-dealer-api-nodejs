@@ -8,5 +8,10 @@ router.route('/')
 	.get(UsersController.index)
 	.post(UsersController.newUser);
 
+// /users/:id
+router.route('/:userId').
+	.get(UsersController.getUser);
+
+
 
 module.exports = router;
