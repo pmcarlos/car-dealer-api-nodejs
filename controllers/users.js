@@ -30,7 +30,7 @@ module.exports = {
 	// }
 
 	newUser: async (req, res, next) => {
-		const newUser = new User(req.body);
+		const newUser = new User(req.value.body);
 		const user = await newUser.save();
 		res.status(201).json(user);
 	},
@@ -43,30 +43,30 @@ module.exports = {
 	},
 
 	replaceUser: async(req, res, next) => {
-		const {userId} = req.params;
-		const newUser = req.body;
+		const {userId} = req.value.params;
+		const newUser = req.value.body;
 		const user = await User.findByIdAndUpdate(userId, newUser);
 		res.status(200).json(user);
 	},
 
 	updateUser: async(req, res, next) => {
-		const {userId} = req.params;
-		const newUser = req.body;
+		const {userId} = req.value.params;
+		const newUser = req.value.body;
 		const user = await User.findByIdAndUpdate(userId, newUser);
 		res.status(200).json(user);
 	},
 
 	getUserCars: async(req, res, next) => {
-		const {userId} = req.params;
+		const {userId} = req.value.params;
 		const user = await User.findById(userId).populate('cars');
 		res.status(200).json(user.cars);
 	},
 
 	addUserCar: async(req, res, next) => {
-		const {userId} = req.params;
+		const {userId} = req.value.params;
 		const user = await User.findById(userId)
 
-		const newCar = new Car(req.body);
+		const newCar = new Car(req.value.body);
 		newCar.seller = user;
 
 		user.cars.push(newCar);

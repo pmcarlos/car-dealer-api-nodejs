@@ -13,6 +13,7 @@ const app = express();
 
 //Routes
 const usersRoute = require('./routes/users');
+const carsRoute = require('./routes/cars');
 
 //Middlewares
 app.use(logger('dev'));
@@ -22,6 +23,7 @@ app.use(bodyParser.json())
 
 //Routes
 app.use('/users', usersRoute);
+app.use('/cars', carsRoute);
 
 //Catch 4040 errors ad fordwards them to error handler function
 app.use((req, res, next) => {
