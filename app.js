@@ -1,7 +1,9 @@
 const express = require('express');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/apiCars', {
 	useMongoClient: true
 });
@@ -14,6 +16,8 @@ const usersRoute = require('./routes/users');
 
 //Middlewares
 app.use(logger('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 
 //Routes
